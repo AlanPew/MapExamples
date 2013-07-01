@@ -10,15 +10,23 @@
 
 @implementation AppDelegate
 
+@synthesize mapController,navController,window;
 - (void)dealloc
 {
-    [_window release];
+    [window release];
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    
+      self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    mapController = [[MapViewController alloc] init];
+    navController = [[UINavigationController alloc] initWithRootViewController:mapController];
+    [self.window setRootViewController:navController];
+    [window addSubview:[navController view]];
+
+   
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
